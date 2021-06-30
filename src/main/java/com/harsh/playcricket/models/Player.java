@@ -1,14 +1,26 @@
 package com.harsh.playcricket.models;
 
+import javax.persistence.*;
+
+@Entity
 public class Player {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private int age;
-    private String type;
+
+    @Enumerated(value= EnumType.STRING)
+    private PlayerType type;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
     private int run;
     private int wicket;
     private double overs;
-    private int played_balls;
+    private int playedballs;
 
     public int getId() {
         return id;
@@ -34,12 +46,20 @@ public class Player {
         this.age = age;
     }
 
-    public String getType() {
+    public PlayerType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(PlayerType type) {
         this.type = type;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public int getRun() {
@@ -58,6 +78,14 @@ public class Player {
         this.wicket = wicket;
     }
 
+    public int getPlayedballs() {
+        return playedballs;
+    }
+
+    public void setPlayedballs(int playedballs) {
+        this.playedballs = playedballs;
+    }
+
     public double getOvers() {
         return overs;
     }
@@ -66,17 +94,9 @@ public class Player {
         this.overs = overs;
     }
 
-    public int getPlayed_balls() {
-        return played_balls;
-    }
-
-    public void setPlayed_balls(int played_balls) {
-        this.played_balls = played_balls;
-    }
 
 }
 
 enum PlayerType {
-
     BOWLER, BATSMAN;
 }
