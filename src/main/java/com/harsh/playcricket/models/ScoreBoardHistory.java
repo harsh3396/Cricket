@@ -3,12 +3,7 @@ package com.harsh.playcricket.models;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "scoreboardhistory")
-public class ScoreBoardHistory {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class ScoreBoardHistory extends Base {
 
     @ManyToOne
     @JoinColumn(name = "striker")
@@ -24,19 +19,12 @@ public class ScoreBoardHistory {
     private double overs;
     private int run;
     private int wicket;
+
     private String output;
 
     @ManyToOne
     @JoinColumn(name = "scoreboard_id")
     private ScoreBoard board;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Player getStriker() {
         return striker;
@@ -86,19 +74,19 @@ public class ScoreBoardHistory {
         this.wicket = wicket;
     }
 
-    public String getOutput() {
-        return output;
-    }
-
-    public void setOutput(String output) {
-        this.output = output;
-    }
-
     public ScoreBoard getBoard() {
         return board;
     }
 
     public void setBoard(ScoreBoard board) {
         this.board = board;
+    }
+
+    public String getOutput() {
+        return output;
+    }
+
+    public void setOutput(String output) {
+        this.output = output;
     }
 }

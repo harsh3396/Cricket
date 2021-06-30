@@ -3,15 +3,16 @@ package com.harsh.playcricket.models;
 import javax.persistence.*;
 
 @Entity
-public class Player {
+public class Player extends Base {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public enum PlayerType {
+        BOWLER, BATSMAN;
+    }
+
     private String name;
     private int age;
 
-    @Enumerated(value= EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private PlayerType type;
 
     @ManyToOne
@@ -21,14 +22,6 @@ public class Player {
     private int wicket;
     private double overs;
     private int playedballs;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -95,8 +88,4 @@ public class Player {
     }
 
 
-}
-
-enum PlayerType {
-    BOWLER, BATSMAN;
 }

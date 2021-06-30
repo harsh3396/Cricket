@@ -3,11 +3,12 @@ package com.harsh.playcricket.models;
 import javax.persistence.*;
 
 @Entity
-public class CricketMatch {
+public class CricketMatch extends Base {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public enum Inning {
+        FIRST, SECOND
+    }
+
     private String name;
 
     @ManyToOne
@@ -18,11 +19,13 @@ public class CricketMatch {
     @JoinColumn(name = "team2")
     private Team team2;
 
-    @ManyToOne
-    @JoinColumn(name = "battingteam")
-    private Team battingteam;
+    private String venue;
 
-    @Enumerated(value= EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "bat_first_team")
+    private Team batFirst;
+
+    @Enumerated(value = EnumType.STRING)
     private Inning inning;
 
     @Column(name = "is_match_over")
@@ -30,14 +33,6 @@ public class CricketMatch {
 
     @Column(name = "max_over")
     private int maxOver;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -63,12 +58,12 @@ public class CricketMatch {
         this.team2 = team2;
     }
 
-    public Team getBattingteam() {
-        return battingteam;
+    public Team getBatFirst() {
+        return batFirst;
     }
 
-    public void setBattingteam(Team battingteam) {
-        this.battingteam = battingteam;
+    public void setBatFirst(Team batFirst) {
+        this.batFirst = batFirst;
     }
 
     public Inning getInning() {
@@ -94,8 +89,12 @@ public class CricketMatch {
     public void setMaxOver(int maxOver) {
         this.maxOver = maxOver;
     }
-}
 
-enum Inning{
-    FIRST, SECOND
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
 }
