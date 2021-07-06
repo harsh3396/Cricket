@@ -5,10 +5,6 @@ import javax.persistence.*;
 @Entity
 public class CricketMatch extends Base {
 
-    public enum Inning {
-        FIRST, SECOND
-    }
-
     private String name;
 
     @ManyToOne
@@ -18,21 +14,21 @@ public class CricketMatch extends Base {
     @ManyToOne
     @JoinColumn(name = "team2")
     private Team team2;
-
     private String venue;
-
-    @ManyToOne
-    @JoinColumn(name = "bat_first_team")
-    private Team batFirst;
-
-    @Enumerated(value = EnumType.STRING)
-    private Inning inning;
 
     @Column(name = "is_match_over")
     private boolean isMatchOver;
 
     @Column(name = "max_over")
     private int maxOver;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="inning1_id")
+    private Inning inning1;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="inning2_id")
+    private Inning inning2;
 
     public String getName() {
         return name;
@@ -58,22 +54,6 @@ public class CricketMatch extends Base {
         this.team2 = team2;
     }
 
-    public Team getBatFirst() {
-        return batFirst;
-    }
-
-    public void setBatFirst(Team batFirst) {
-        this.batFirst = batFirst;
-    }
-
-    public Inning getInning() {
-        return inning;
-    }
-
-    public void setInning(Inning inning) {
-        this.inning = inning;
-    }
-
     public boolean isMatchOver() {
         return isMatchOver;
     }
@@ -96,5 +76,21 @@ public class CricketMatch extends Base {
 
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public Inning getInning1() {
+        return inning1;
+    }
+
+    public void setInning1(Inning inning1) {
+        this.inning1 = inning1;
+    }
+
+    public Inning getInning2() {
+        return inning2;
+    }
+
+    public void setInning2(Inning inning2) {
+        this.inning2 = inning2;
     }
 }

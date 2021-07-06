@@ -14,10 +14,6 @@ public class Player extends Base {
 
     @Enumerated(value = EnumType.STRING)
     private PlayerType type;
-
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
     private int run;
     private int wicket;
     private double overs;
@@ -52,14 +48,6 @@ public class Player extends Base {
 
     public void setType(PlayerType type) {
         this.type = type;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     public int getRun() {

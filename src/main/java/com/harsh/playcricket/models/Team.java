@@ -9,8 +9,9 @@ public class Team extends Base {
 
     private String name;
 
-//    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-//    private Set<Player> players;
+    @OneToMany
+    @JoinTable(name = "team_player_map", joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "player_id", referencedColumnName = "id"))
+    private Set<Player> players;
 
     public String getName() {
         return name;
@@ -20,21 +21,11 @@ public class Team extends Base {
         this.name = name;
     }
 
-//    public Set<Player> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(Set<Player> players) {
-//        this.players = players;
-//    }
-//
-//    public void addPlayer(Player player) {
-//        if (player != null) {
-//            if (players == null) {
-//                players = new HashSet<>();
-//            }
-////            player.setTeam(this);
-//            players.add(player);
-//        }
-//    }
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
+    }
 }

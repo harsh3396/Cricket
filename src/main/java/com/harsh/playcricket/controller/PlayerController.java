@@ -29,7 +29,7 @@ public class PlayerController {
     }
 
     @GetMapping("player/{id}")
-    public BaseResponse createPlayer(@PathVariable(value = "id") int player_id){
+    public BaseResponse getPlayer(@PathVariable(value = "id") int player_id){
         Optional<Player> player = playerRepository.findById(player_id);
         if(!player.isPresent()){
             throw new NotFoundException("Player id " + player_id +" doesn't exist.");
