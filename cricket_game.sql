@@ -19,6 +19,9 @@ create table player
     wicket      int,
     overs       decimal(2, 1),
     playedballs int,
+    total_match int,
+    strike_rate int,
+    average     decimal(3, 2),
     FOREIGN KEY (team_id)
         REFERENCES team (id)
 );

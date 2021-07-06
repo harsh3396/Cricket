@@ -22,6 +22,13 @@ public class Player extends Base {
     private int wicket;
     private double overs;
     private int playedballs;
+    private double average;
+
+    @Column(name = "strike_rate")
+    private int strikeRate;
+
+    @Column(name = "total_match")
+    private int totalMatch;
 
     public String getName() {
         return name;
@@ -87,5 +94,27 @@ public class Player extends Base {
         this.overs = overs;
     }
 
+    public double getAverage() {
+        return average;
+    }
 
+    public void setAverage(double average) {
+        this.average = average;
+    }
+
+    public int getStrikeRate() {
+        return strikeRate;
+    }
+
+    public void setStrikeRate(int strikeRate) {
+        this.strikeRate = strikeRate;
+    }
+
+    public int getTotalMatch() {
+        return totalMatch;
+    }
+
+    public void setTotalMatch(int totalMatch) {
+        this.totalMatch = totalMatch;
+    }
 }
