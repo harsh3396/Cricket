@@ -1,22 +1,30 @@
 package com.harsh.playcricket.models;
 
-public class Player {
-    private int id;
+import javax.persistence.*;
+
+@Entity
+public class Player extends Base {
+
+    public enum PlayerType {
+        BOWLER, BATSMAN;
+    }
+
     private String name;
     private int age;
-    private String type;
+
+    @Enumerated(value = EnumType.STRING)
+    private PlayerType type;
     private int run;
     private int wicket;
     private double overs;
-    private int played_balls;
+    private int playedballs;
+    private double average;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name = "strike_rate")
+    private int strikeRate;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(name = "total_match")
+    private int totalMatch;
 
     public String getName() {
         return name;
@@ -34,11 +42,11 @@ public class Player {
         this.age = age;
     }
 
-    public String getType() {
+    public PlayerType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(PlayerType type) {
         this.type = type;
     }
 
@@ -58,6 +66,14 @@ public class Player {
         this.wicket = wicket;
     }
 
+    public int getPlayedballs() {
+        return playedballs;
+    }
+
+    public void setPlayedballs(int playedballs) {
+        this.playedballs = playedballs;
+    }
+
     public double getOvers() {
         return overs;
     }
@@ -66,17 +82,27 @@ public class Player {
         this.overs = overs;
     }
 
-    public int getPlayed_balls() {
-        return played_balls;
+    public double getAverage() {
+        return average;
     }
 
-    public void setPlayed_balls(int played_balls) {
-        this.played_balls = played_balls;
+    public void setAverage(double average) {
+        this.average = average;
     }
 
-}
+    public int getStrikeRate() {
+        return strikeRate;
+    }
 
-enum PlayerType {
+    public void setStrikeRate(int strikeRate) {
+        this.strikeRate = strikeRate;
+    }
 
-    BOWLER, BATSMAN;
+    public int getTotalMatch() {
+        return totalMatch;
+    }
+
+    public void setTotalMatch(int totalMatch) {
+        this.totalMatch = totalMatch;
+    }
 }
